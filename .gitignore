@@ -1,7 +1,7 @@
-.htaccess
+/.htaccess
 /index.php
-license.txt
-readme.html
+/license.txt
+/readme.html
 wp-activate.php
 wp-blog-header.php
 wp-comments-post.php
