@@ -55,6 +55,8 @@ class Nocte_Slider {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+		add_action('plugins_loaded', array( $this, 'set_locale') );
+
 	}
 
 	/**
@@ -110,8 +112,6 @@ class Nocte_Slider {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
-		add_action('plugins_loaded', array( $this, 'set_locale') );
 
 		$plugin_admin = new Nocte_Slider_Admin( $this->get_plugin_name(), $this->get_version() );
 
