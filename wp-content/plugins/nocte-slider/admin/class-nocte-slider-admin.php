@@ -37,11 +37,9 @@ class Nocte_Slider_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
-
+	public function __construct( $plugin_name, $version ){
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -49,10 +47,8 @@ class Nocte_Slider_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/nocte-slider-admin.css', array(), $this->version, 'all' );
-
+	public function enqueue_styles(){
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) .'css/nocte-slider-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -60,10 +56,10 @@ class Nocte_Slider_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/nocte-slider-admin.js', array( 'jquery' ), $this->version, false );
-
+	public function enqueue_scripts(){
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) .'js/nocte-slider-admin.js', array('jquery'), $this->version, false );
 	}
+
+
 
 }

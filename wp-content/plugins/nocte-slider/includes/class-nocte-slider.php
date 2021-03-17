@@ -43,8 +43,8 @@ class Nocte_Slider {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
-		if ( defined( 'NOCTE_SLIDER_VERSION' ) ) {
+	public function __construct(){
+		if( defined('NOCTE_SLIDER_VERSION') ){
 			$this->version = NOCTE_SLIDER_VERSION;
 		} else {
 			$this->version = '1.0.0';
@@ -56,7 +56,6 @@ class Nocte_Slider {
 		$this->define_public_hooks();
 
 		add_action('plugins_loaded', array( $this, 'set_locale') );
-
 	}
 
 	/**
@@ -64,8 +63,6 @@ class Nocte_Slider {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Nocte_Slider_Loader. Orchestrates the hooks of the plugin.
-	 * - Nocte_Slider_i18n. Defines internationalization functionality.
 	 * - Nocte_Slider_Admin. Defines all hooks for the admin area.
 	 * - Nocte_Slider_Public. Defines all hooks for the public side of the site.
 	 *
@@ -75,8 +72,7 @@ class Nocte_Slider {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function load_dependencies() {
-
+	private function load_dependencies(){
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
@@ -87,20 +83,19 @@ class Nocte_Slider {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nocte-slider-public.php';
-
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
 	 * @since    1.0.0
-	 * @access   private
+	 * @access   public
 	 */
-	private function set_locale() {
+	public function set_locale() {
 		load_plugin_textdomain(
 			'nocte-slider',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname( dirname( plugin_basename( __FILE__ ) ) ) .'/languages/'
 		);
 	}
 
@@ -111,12 +106,11 @@ class Nocte_Slider {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
-
+	private function define_admin_hooks(){
 		$plugin_admin = new Nocte_Slider_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
-		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
+		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles') );
+		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts') );
 
 	}
 
@@ -127,13 +121,11 @@ class Nocte_Slider {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_public_hooks() {
-
+	private function define_public_hooks(){
 		$plugin_public = new Nocte_Slider_Public( $this->get_plugin_name(), $this->get_version() );
 
-		add_action('wp_enqueue_scripts', array( $plugin_public, 'enqueue_styles' ) );
-		add_action('wp_enqueue_scripts', array( $plugin_public, 'enqueue_scripts' ) );
-
+		add_action('wp_enqueue_scripts', array( $plugin_public, 'enqueue_styles') );
+		add_action('wp_enqueue_scripts', array( $plugin_public, 'enqueue_scripts') );
 	}
 
 	/**
@@ -143,7 +135,7 @@ class Nocte_Slider {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_plugin_name() {
+	public function get_plugin_name(){
 		return $this->plugin_name;
 	}
 
@@ -153,7 +145,7 @@ class Nocte_Slider {
 	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
 	 */
-	public function get_version() {
+	public function get_version(){
 		return $this->version;
 	}
 
