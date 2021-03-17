@@ -73,7 +73,7 @@ class NS_Carousel_Fields {
         if( is_array( $field_wrapper_classes ) ){
             $field_wrapper_classes = implode(' ', $field_wrapper_classes );
         }
-        $field_wrapper_classes =. ' ';
+        $field_wrapper_classes = !empty( $field_wrapper_classes ) ? ' '. $field_wrapper_classes : '';
         //  Set up field attributes
         $field_atts = array();
         //  Set up input name
@@ -111,7 +111,7 @@ class NS_Carousel_Fields {
         if( is_array( $field_wrapper_classes ) ){
             $field_wrapper_classes = implode(' ', $field_wrapper_classes );
         }
-        $field_wrapper_classes =. ' ';
+        $field_wrapper_classes = !empty( $field_wrapper_classes ) ? ' '. $field_wrapper_classes : '';
         //  Set up field attributes
         $field_atts = array();
         //  Set up input name
@@ -153,7 +153,7 @@ class NS_Carousel_Fields {
         if( is_array( $field_wrapper_classes ) ){
             $field_wrapper_classes = implode(' ', $field_wrapper_classes );
         }
-        $field_wrapper_classes =. ' ';
+        $field_wrapper_classes = !empty( $field_wrapper_classes ) ? ' '. $field_wrapper_classes : '';
         //  Set up field attributes
         $field_atts = array();
         //  Set up input name
@@ -198,7 +198,7 @@ class NS_Carousel_Fields {
         if( is_array( $field_wrapper_classes ) ){
             $field_wrapper_classes = implode(' ', $field_wrapper_classes );
         }
-        $field_wrapper_classes =. ' ';
+        $field_wrapper_classes = !empty( $field_wrapper_classes ) ? ' '. $field_wrapper_classes : '';
         //  Set up field attributes
         $field_atts = array();
         //  Set up input name
@@ -250,7 +250,7 @@ class NS_Carousel_Fields {
         if( is_array( $field_wrapper_classes ) ){
             $field_wrapper_classes = implode(' ', $field_wrapper_classes );
         }
-        $field_wrapper_classes =. ' ';
+        $field_wrapper_classes = !empty( $field_wrapper_classes ) ? ' '. $field_wrapper_classes : '';
 
         //  Add markup
         ?>
