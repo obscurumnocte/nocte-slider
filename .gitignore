@@ -2,6 +2,7 @@
 /index.php
 /license.txt
 /readme.html
+/wp-config.php
 wp-activate.php
 wp-blog-header.php
 wp-comments-post.php
