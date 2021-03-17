@@ -112,6 +112,9 @@ class Nocte_Slider {
 		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles') );
 		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts') );
 
+		//  Add carousel post type
+		add_action('init', array( $plugin_admin, 'ns_carousel_post_type_setup'), 11 );
+        add_filter('post_updated_messages', array( $plugin_admin, 'ns_carousel_updated_messages') );
 	}
 
 	/**
