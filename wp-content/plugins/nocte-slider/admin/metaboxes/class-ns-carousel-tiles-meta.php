@@ -21,7 +21,7 @@ class NS_Carousel_Tiles_Meta {
     /**
      * Add Meta Box and custom fields
      */
-    function ns_carousel_tiles_metabox(){
+    public function ns_carousel_tiles_metabox(){
         global $post;
 
         if( empty( $post ) ) return;
@@ -38,7 +38,7 @@ class NS_Carousel_Tiles_Meta {
     /**
      * Displays fields event closedir
      */
-    function ns_carousel_tiles_fields(){
+    public function ns_carousel_tiles_fields(){
     	global $post;
     	// Use nonce for verification
     	wp_nonce_field( basename( __FILE__ ), 'tiles_meta_box_nonce');
@@ -54,7 +54,7 @@ class NS_Carousel_Tiles_Meta {
     /**
      *  Save the custom field data
      */
-    function ns_carousel_tiles_save_custom_meta( $post_id ){
+    public function ns_carousel_tiles_save_custom_meta( $post_id ){
         global $post;
 
 		// Verify the nonce before proceeding.
