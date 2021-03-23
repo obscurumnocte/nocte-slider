@@ -183,7 +183,7 @@ class NS_Carousel_Owl_Options_Meta {
 					'type'		=> 'checkbox',
 					'default'	=> 0,
 					'label'		=> __('Navigation Arrows', 'ns'),
-					'desc'		=> __('Show next and revious arrow buttons.', 'ns')
+					'desc'		=> __('Show next and previous arrow buttons.', 'ns')
 				),
 				'rewind'		=> array(
 					'type'		=> 'checkbox',
