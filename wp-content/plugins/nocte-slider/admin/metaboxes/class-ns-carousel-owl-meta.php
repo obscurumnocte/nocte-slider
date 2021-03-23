@@ -107,37 +107,37 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'loop'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Loop', 'ns'),
 					'desc'		=> __('Infinity loop the carousel.', 'ns')
 				),
 				'center'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Center', 'ns'),
 					'desc'		=> __('Center current item horizontally.', 'ns')
 				),
 				'mouseDrag'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Mouse Drag', 'ns'),
 					'desc'		=> __('Enable mouse drag of carousel.', 'ns')
 				),
 				'touchDrag'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Touch Drag', 'ns'),
 					'desc'		=> __('Enable touch drag of carousel.', 'ns')
 				),
 				'pullDrag'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Pull Drag', 'ns'),
 					'desc'		=> __('Stage pull to edge.', 'ns')
 				),
 				'freeDrag'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Free Drag', 'ns'),
 					'desc'		=> __('Item pull to edge.', 'ns')
 				),
@@ -150,19 +150,19 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'merge'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Merge', 'ns'),
 					'desc'		=> __('Merge items to show a number of items as one (NOTE: individual slide options required for functionality).', 'ns')
 				),
 				'mergeFit'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Merge Fit', 'ns'),
 					'desc'		=> __('Fit merged items if screen is smaller than items value.', 'ns')
 				),
 				'autoWidth'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Auto Width', 'ns'),
 					'desc'		=> __('Allow width of item to be dictated by content.', 'ns')
 				),
@@ -175,19 +175,19 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'URLhashListener'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('URL Hash Listener', 'ns'),
 					'desc'		=> __('Enable carousel to monitor the URL for hash ids to show a certain item e.g. #item-2 (NOTE: individual item setting required for reference)', 'ns')
 				),
 				'nav'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Navigation Arrows', 'ns'),
 					'desc'		=> __('Show next and revious arrow buttons.', 'ns')
 				),
 				'rewind'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Rewind', 'ns'),
 					'desc'		=> __('Go backwards when the boundary has been reached i.e. clicking next on last item will slide back through all items to the first.', 'ns'),
 				),
@@ -234,7 +234,7 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'dots'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Dots/Pagination', 'ns'),
 					'desc'		=> __('Show dots navigation.', 'ns')
 				),
@@ -247,13 +247,13 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				/*'dotsData'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Dots Data', 'ns'),
 					'desc'		=> __('Used by data-dot content.', 'ns')
 				),*/
 				'lazyLoad'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Lazyload', 'ns'),
 					'desc'		=> __('Lazyload images.', 'ns')
 				),
@@ -266,7 +266,7 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'autoplay'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Autoplay', 'ns'),
 					'desc'		=> __('Autoplay carousel slides.', 'ns')
 				),
@@ -279,7 +279,7 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'autoplayHoverPause'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Autoplay Hover Pause', 'ns'),
 					'desc'		=> __('Pause autoplay when the mouse is over the carousel.', 'ns')
 				),
@@ -291,7 +291,7 @@ class NS_Carousel_Owl_Options_Meta {
 				),*/
 				/*'fluidSpeed'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Fluid Speed', 'ns'),
 					'desc'		=> __('Speed calculate - more info to come...', 'ns')
 				),*/
@@ -325,7 +325,7 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'callbacks'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Callbacks', 'ns'),
 					'desc'		=> __('Enable callback events.', 'ns')
 				),
@@ -351,7 +351,7 @@ class NS_Carousel_Owl_Options_Meta {
 						),
 						'center'		=> array(
 							'type'		=> 'checkbox',
-							'default'	=> false,
+							'default'	=> 0,
 							'label'		=> __('Center', 'ns'),
 							'desc'		=> __('Center current item horizontally.', 'ns')
 						),
@@ -371,13 +371,13 @@ class NS_Carousel_Owl_Options_Meta {
 						),
 						'nav'		=> array(
 							'type'		=> 'checkbox',
-							'default'	=> false,
+							'default'	=> 0,
 							'label'		=> __('Navigation Arrows', 'ns'),
 							'desc'		=> __('Show next and revious arrow buttons.', 'ns')
 						),
 						'rewind'		=> array(
 							'type'		=> 'checkbox',
-							'default'	=> true,
+							'default'	=> 1,
 							'label'		=> __('Rewind', 'ns'),
 							'desc'		=> __('Go backwards when the boundary has been reached i.e. clicking next on last item will slide back through all items to the first.', 'ns')
 						),
@@ -398,7 +398,7 @@ class NS_Carousel_Owl_Options_Meta {
 						),
 						'dots'		=> array(
 							'type'		=> 'checkbox',
-							'default'	=> true,
+							'default'	=> 1,
 							'label'		=> __('Dots/Pagination', 'ns'),
 							'desc'		=> __('Show dots navigation.', 'ns')
 						),
@@ -419,7 +419,7 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'video'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> false,
+					'default'	=> 0,
 					'label'		=> __('Video', 'ns'),
 					'desc'		=> __('Enable fetching of YouTube/Vimeo/Vzaar videos.', 'ns')
 				),
@@ -499,11 +499,11 @@ class NS_Carousel_Owl_Options_Meta {
 				),
 				'checkVisible'		=> array(
 					'type'		=> 'checkbox',
-					'default'	=> true,
+					'default'	=> 1,
 					'label'		=> __('Check Visible', 'ns'),
 					'desc'		=> __('Disable this option is you know that the carousel will always be visible i.e. not hidden in an accordion.', 'ns')
 				),
-			);
+			)
 		);
 	}
 
