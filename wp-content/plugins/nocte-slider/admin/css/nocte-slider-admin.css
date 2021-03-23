@@ -1,0 +1,25 @@
+.field-wrapper {
+    padding-bottom: 13px;
+    border-bottom: 1px solid #ddd;
+}
+.field-wrapper .subfield-wrapper .field-wrapper {
+    border: 0;
+    display: inline-block;
+}
+.field-wrapper p {
+    margin-bottom: 5px;
+    margin-top: 7px;
+}
+.field-wrapper .label-text {
+    font-weight: 600;
+}
+.field-wrapper .field-desc {
+    font-size: 11px;
+}
+
+.field-wrapper input[type="text"],
+.field-wrapper input[type="number"],
+.field-wrapper select {
+    width: 100%;
+    max-width: 250px;
+}
