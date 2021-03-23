@@ -61,14 +61,6 @@ class Nocte_Slider {
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - Nocte_Slider_Admin. Defines all hooks for the admin area.
-	 * - Nocte_Slider_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
