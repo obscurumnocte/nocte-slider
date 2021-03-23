@@ -335,59 +335,66 @@ class NS_Carousel_Owl_Options_Meta {
 					'label'		=> __('Responsive options', 'ns'),
 					'desc'		=> __('Responsive options can be set at different screen widths i.e. from 0 width show 1 item, from 768 width show 2 items, etc.', 'ns'),
 					'subfields'	=> array(
-						'items'		=> array(
+						'responsive[][breakpoint]'		=> array(
+							'type'		=> 'number',
+							'default'	=> 0,
+							'label'		=> __('Breakpoint', 'ns'),
+							'desc'		=> __('The pixel width of the screen when the following settings should be used (above this value, requires a 0 breakpoint).', 'ns'),
+							'min'		=> 0
+						),
+						'responsive[][items]'		=> array(
 							'type'		=> 'number',
 							'default'	=> 3,
 							'label'		=> __('Items', 'ns'),
 							'desc'		=> __('The number of items you want to see on the screen.', 'ns'),
 							'min'		=> 1
 						),
-						'margin'		=> array(
+						'responsive[][margin]'		=> array(
 							'type'		=> 'number',
 							'default'	=> 0,
 							'label'		=> __('Margin', 'ns'),
 							'desc'		=> __('The margin-right in pixels on an item - numerical value only.', 'ns'),
 							'min'		=> 0
 						),
-						'center'		=> array(
+						'responsive[][center]'		=> array(
 							'type'		=> 'checkbox',
 							'default'	=> 0,
 							'label'		=> __('Center', 'ns'),
 							'desc'		=> __('Center current item horizontally.', 'ns')
 						),
-						'stagePadding'		=> array(
+						'responsive[][stagePadding]'		=> array(
 							'type'		=> 'number',
 							'default'	=> 0,
 							'label'		=> __('Stage Padding', 'ns'),
 							'desc'		=> __('Add padding to the left and right of the carousel to see next and previous slides.', 'ns'),
 							'min'		=> 0
 						),
-						'startPosition'		=> array(
+						'responsive[][startPosition]'		=> array(
 							'type'		=> 'number',
 							'default'	=> 1,
 							'label'		=> __('Start Position', 'ns'),
 							'desc'		=> __('Position of item to start with (0 is first item)', 'ns'),
 							'min'		=> 1
 						),
-						'nav'		=> array(
+						'responsive[][nav]'		=> array(
 							'type'		=> 'checkbox',
 							'default'	=> 0,
 							'label'		=> __('Navigation Arrows', 'ns'),
 							'desc'		=> __('Show next and revious arrow buttons.', 'ns')
 						),
-						'rewind'		=> array(
+						'responsive[][rewind]'		=> array(
 							'type'		=> 'checkbox',
 							'default'	=> 1,
 							'label'		=> __('Rewind', 'ns'),
 							'desc'		=> __('Go backwards when the boundary has been reached i.e. clicking next on last item will slide back through all items to the first.', 'ns')
 						),
-						'slideBy'		=> array(
+						'responsive[][slideBy]'		=> array(
 							'type'		=> 'text',
 							'default'	=> 1,
 							'label'		=> __('Slide By', 'ns'),
 							'desc'		=> __('Number of items to slide by when navigating. \'page\' can be set to slide all visible items to reveal the next set.', 'ns')
 						),
-						'slideTransition'		=> array(
+						'responsive[][slideTransition]'		=> array(
 							'type'		=> 'select',
 							'default'	=> '',
 							'label'		=> __('Slide Transition', 'ns'),
@@ -396,7 +403,7 @@ class NS_Carousel_Owl_Options_Meta {
 								''			=> __('Linear', 'ns')
 							)
 						),
-						'dots'		=> array(
+						'responsive[][dots]'		=> array(
 							'type'		=> 'checkbox',
 							'default'	=> 1,
 							'label'		=> __('Dots/Pagination', 'ns'),
