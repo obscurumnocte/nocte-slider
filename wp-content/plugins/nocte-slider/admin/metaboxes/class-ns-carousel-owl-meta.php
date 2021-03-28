@@ -9,6 +9,12 @@ defined('ABSPATH') || exit;
  * Features Class.
  */
 class NS_Carousel_Owl_Options_Meta {
+
+	/**
+	 * Metabox fields
+	 */
+	protected $metabox_fields;
+
 
 	/**
 	 * Constructor.
@@ -46,13 +52,11 @@ class NS_Carousel_Owl_Options_Meta {
 		$option_fields = $this->get_fields_config();
 
 		//  Set up fields class for processing
-		$fields = new NS_Carousel_Fields();
-		//  Check and set up field values
-		$option_fields = $fields->load_values( $option_fields, $post->ID );
+		$this->metabox_fields = new NS_Carousel_Metabox_Fields();
 		//  Display fields
 	?>
 		<div id="ns_carousel_owl_options">
-			<?php $fields->add_markup( $option_fields ); ?>
+			<?php $this->metabox_fields->add_markup( $option_fields ); ?>
 		</div>
     <?php
     }
