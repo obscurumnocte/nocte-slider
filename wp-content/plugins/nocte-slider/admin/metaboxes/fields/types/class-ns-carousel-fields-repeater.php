@@ -16,7 +16,9 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
     public function __construct( $field_name, $field_config, $post_id ){
         parent::__construct( $field_name, $field_config, $post_id );
 
-
+        if( !has_action('ns_carousel_metabox_fields_common_code', 'NS_Carousel_Field_Repeater::add_svgs') ){
+            add_action('ns_carousel_metabox_fields_common_code', 'NS_Carousel_Field_Repeater::add_svgs');
+        }
     }
 
     /**
@@ -76,6 +78,33 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
                 </div>
             </div>
         <?php
+    }
+
+
+    /**
+     *  Add the SVG code needed for the functionality of the repeater field
+     *  Static function to hook only once and add SVG code only once
+     */
+    public static function add_svgs(){
+    ?>
+        <div class="repeater-svgs-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1382 882" enable-background="new 0 0 1382 1662" xml:space="preserve" style="display:none;">
+                <defs>
+                    <g id="nsc-accordion-chevron" viewBox="0 0 1382 1662">
+                        <path d="M863.98,336.626L726.921,473.685l347.587,347.587c51.905,51.908,136.368,51.908,188.274,0l42.5-42.499   c51.908-51.906,51.908-136.367,0-188.274L917.57,202.788C918.614,255.221,898.335,302.272,863.98,336.626z"/>
+                        <path d="M828.059,300.705c25.022-25.021,38.804-58.452,38.804-94.137c0-64.66-37.283-92.616-81.301-136.638   c-51.899-51.899-136.36-51.914-188.275,0L76.719,590.499c-51.908,51.906-51.908,136.367,0,188.274l42.499,42.499   c51.905,51.908,136.368,51.908,188.274,0L828.059,300.705z"/>
+                    </g>
+                </defs>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1000" width="875" style="display:none;">
+                <defs>
+                    <g id="nsc-trash" viewBox="0 0 875 1000">
+                        <path d="M0 281.296l0 -68.355q1.953 -37.107 29.295 -62.496t64.449 -25.389l93.744 0l0 -31.248q0 -39.06 27.342 -66.402t66.402 -27.342l312.48 0q39.06 0 66.402 27.342t27.342 66.402l0 31.248l93.744 0q37.107 0 64.449 25.389t29.295 62.496l0 68.355q0 25.389 -18.553 43.943t-43.943 18.553l0 531.216q0 52.731 -36.13 88.862t-88.862 36.13l-499.968 0q-52.731 0 -88.862 -36.13t-36.13 -88.862l0 -531.216q-25.389 0 -43.943 -18.553t-18.553 -43.943zm62.496 0l749.952 0l0 -62.496q0 -13.671 -8.789 -22.46t-22.46 -8.789l-687.456 0q-13.671 0 -22.46 8.789t-8.789 22.46l0 62.496zm62.496 593.712q0 25.389 18.553 43.943t43.943 18.553l499.968 0q25.389 0 43.943 -18.553t18.553 -43.943l0 -531.216l-624.96 0l0 531.216zm62.496 -31.248l0 -406.224q0 -13.671 8.789 -22.46t22.46 -8.789l62.496 0q13.671 0 22.46 8.789t8.789 22.46l0 406.224q0 13.671 -8.789 22.46t-22.46 8.789l-62.496 0q-13.671 0 -22.46 -8.789t-8.789 -22.46zm31.248 0l62.496 0l0 -406.224l-62.496 0l0 406.224zm31.248 -718.704l374.976 0l0 -31.248q0 -13.671 -8.789 -22.46t-22.46 -8.789l-312.48 0q-13.671 0 -22.46 8.789t-8.789 22.46l0 31.248zm124.992 718.704l0 -406.224q0 -13.671 8.789 -22.46t22.46 -8.789l62.496 0q13.671 0 22.46 8.789t8.789 22.46l0 406.224q0 13.671 -8.789 22.46t-22.46 8.789l-62.496 0q-13.671 0 -22.46 -8.789t-8.789 -22.46zm31.248 0l62.496 0l0 -406.224l-62.496 0l0 406.224zm156.24 0l0 -406.224q0 -13.671 8.789 -22.46t22.46 -8.789l62.496 0q13.671 0 22.46 8.789t8.789 22.46l0 406.224q0 13.671 -8.789 22.46t-22.46 8.789l-62.496 0q-13.671 0 -22.46 -8.789t-8.789 -22.46zm31.248 0l62.496 0l0 -406.224l-62.496 0l0 406.224z"/>
+                    </g>
+                </defs>
+            </svg>
+        </div>
+    <?php
     }
 
 }

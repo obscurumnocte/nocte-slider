@@ -37,6 +37,8 @@ class NS_Carousel_Metabox_Fields {
         ?>
         </div>
         <?php
+        // Add action to allow fields to add common code i.e. SVGs
+        do_action('ns_carousel_metabox_fields_common_code');
     }
 
 
