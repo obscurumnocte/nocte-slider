@@ -36,6 +36,10 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
         //  Check field description
         $field_desc = !empty( $this->desc ) ? '<span class="field-desc"> - '. $this->desc .'</span>' : '';
 
+        $add_btn_text = !empty( $this->add_btn_text ) ? $this->add_btn_text : __('Add Item', 'ns');
+        $accordion_btn_text = !empty( $this->accordion_btn_text ) ? $this->accordion_btn_text : __('Open/Close Item', 'ns');
+        $trash_btn_text = !empty( $this->trash_btn_text ) ? $this->trash_btn_text : __('Delete Item', 'ns');
+
         //  Check values and display repeater groups with existing saved values. Add a template of repeater fields to be used for new data.
         $field_values = isset( $this->value ) && is_array( $this->value ) ? $this->value : array();
 
@@ -46,6 +50,7 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
         ?>
             <div class="field-wrapper <?php echo esc_attr( $this->type ); ?>-field-wrapper">
                 <p><?php echo $field_label; ?><?php echo $field_desc; ?></p>
+                <div class="repeater-values-wrapper collapsable-fields">
                 <?php // Check values and loop through to display saved data
                     if( !empty( $field_values ) ):
                         foreach( $field_values as $repeater_values ):
@@ -57,24 +62,45 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
                             }
                 ?>
                             <div class="repeater-wrapper">
-                            <?php //  Loop through subfields and add individually
-                                foreach( $this->subfields as $subfield_name => $subfield_options ){
-                                    $metabox_fields->check_options_method( $subfield_name, $subfield_options );
-                                    //  Clear previously set values
-                                    unset( $this->subfields[ $subfield_name ]['value'] );
-                                }
-                            ?>
+                                <div class="collapsable-content">
+                                    <?php //  Loop through subfields and add individually
+                                        foreach( $this->subfields as $subfield_name => $subfield_options ){
+                                            $metabox_fields->check_options_method( $subfield_name, $subfield_options );
+                                            //  Clear previously set values
+                                            unset( $this->subfields[ $subfield_name ]['value'] );
+                                        }
+                                    ?>
+                                </div>
+                                <div class="controls-wrapper">
+                                    <div class="collapse-controls">
+                                        <button class="collapse-btn"><span class="screen-reader-text"><?php echo $accordion_btn_text; ?></span><svg viewBox="0 0 1382 882" class="accordion-chevron"><use xlink:href="#nsc-accordion-chevron"/></svg></button>
+                                    </div>
+                                    <button class="repeater-delete"><span class="screen-reader-text"><?php echo $trash_btn_text; ?></span><svg viewBox="0 0 875 1000" class="repeater-trash"><use xlink:href="#nsc-trash"/></svg></button>
+                                </div>
                             </div>
                 <?php
                         endforeach;
                     endif;
                 ?>
+                </div>
+                <div class="repeater-controls-wrapper">
+                    <button class="add-repeater-item button"><?php echo $add_btn_text; ?></button>
+                </div>
+
                 <div class="repeater-template repeater-wrapper">
-                <?php //  Loop through subfields and add individually
-                    foreach( $this->subfields as $subfield_name => $subfield_options ){
-                        $metabox_fields->check_options_method( $subfield_name, $subfield_options );
-                    }
-                ?>
+                    <div class="collapsable-content">
+                    <?php //  Loop through subfields and add individually
+                        foreach( $this->subfields as $subfield_name => $subfield_options ){
+                            $metabox_fields->check_options_method( $subfield_name, $subfield_options );
+                        }
+                    ?>
+                    </div>
+                    <div class="controls-wrapper">
+                        <div class="collapse-controls">
+                            <button class="collapse-btn"><span class="screen-reader-text"><?php echo $accordion_btn_text; ?></span><svg viewBox="0 0 1382 882" class="accordion-chevron"><use xlink:href="#nsc-accordion-chevron"/></svg></button>
+                        </div>
+                        <button class="repeater-delete"><span class="screen-reader-text"><?php echo $trash_btn_text; ?></span><svg viewBox="0 0 875 1000" class="repeater-trash"><use xlink:href="#nsc-trash"/></svg></button>
+                    </div>
                 </div>
             </div>
         <?php

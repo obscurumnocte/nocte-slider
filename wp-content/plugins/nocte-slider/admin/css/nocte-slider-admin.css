@@ -1,10 +1,11 @@
+.fieldset-wrapper,
+.fieldset-wrapper * {
+    box-sizing: border-box;
+}
+
 .field-wrapper {
     padding-bottom: 13px;
     border-bottom: 1px solid #ddd;
-}
-.field-wrapper .subfield-wrapper .field-wrapper {
-    border: 0;
-    display: inline-block;
 }
 .field-wrapper p {
     margin-bottom: 5px;
@@ -22,4 +23,73 @@
 .field-wrapper select {
     width: 100%;
     max-width: 250px;
+}
+
+.field-wrapper .subfield-wrapper .field-wrapper {
+    border: 0;
+    display: inline-block;
+}
+
+.field-wrapper.repeater-field-wrapper .repeater-template {
+    display: none;
+}
+.field-wrapper.repeater-field-wrapper .repeater-values-wrapper {
+    border-left: 10px solid #ddd;
+    margin-bottom: 20px;
+}
+.field-wrapper.repeater-field-wrapper .repeater-values-wrapper .repeater-wrapper/*,
+.field-wrapper.repeater-field-wrapper .repeater-wrapper*/ {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+}
+.field-wrapper.repeater-field-wrapper .collapsed-header {
+    flex: 100% 0 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.field-wrapper.repeater-field-wrapper .collapsed-header .accordion-header-value::before {
+    content: " (";
+}
+.field-wrapper.repeater-field-wrapper .collapsed-header .accordion-header-value::after {
+    content: ")";
+}
+.field-wrapper.repeater-field-wrapper .collapsable-content {
+    flex: auto 1 0;
+}
+.field-wrapper.repeater-field-wrapper .controls-wrapper {
+    flex: 60px 0 1;
+    padding-left: 30px;
+}
+.field-wrapper.repeater-field-wrapper .collapse-controls {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+.repeater-wrapper .field-wrapper:last-child {
+    border: none;
+}
+.field-wrapper.repeater-field-wrapper .controls-wrapper button {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent;
+}
+.field-wrapper.repeater-field-wrapper .controls-wrapper button:focus {
+    outline: none;
+}
+.field-wrapper.repeater-field-wrapper .controls-wrapper .accordion-chevron {
+    width: 25px;
+    height: 25px;
+    transition: transform ease-in-out 0.4s;
+}
+.field-wrapper.repeater-field-wrapper .repeater-wrapper.closed .controls-wrapper .accordion-chevron {
+    transform: rotate(180deg);
+}
+.field-wrapper.repeater-field-wrapper .controls-wrapper .repeater-trash {
+    width: 20px;
 }
