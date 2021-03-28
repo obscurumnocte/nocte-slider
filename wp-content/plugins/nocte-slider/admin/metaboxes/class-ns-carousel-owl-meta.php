@@ -334,6 +334,7 @@ class NS_Carousel_Owl_Options_Meta {
 					'default'	=> false,
 					'label'		=> __('Responsive options', 'ns'),
 					'desc'		=> __('Responsive options can be set at different screen widths i.e. from 0 width show 1 item, from 768 width show 2 items, etc.', 'ns'),
+					'add_btn_text'	=> __('Add breakpoint', 'ns'),
 					'subfields'	=> array(
 						'responsive[][breakpoint]'		=> array(
 							'type'		=> 'number',
