@@ -21,7 +21,7 @@ class NS_Carousel_Owl_Options_Meta {
 	 */
 	public function __construct() {
         add_action('add_meta_boxes', array( $this, 'ns_carousel_owl_options_metabox') );
-        add_action('save_post', array( $this, 'ns_carousel_owl_options_save_custom_meta') );
+        add_action('save_post', array( $this, 'ns_carousel_owl_options_save_custom_meta'), 10, 3 );
 	}
 
     /**
@@ -64,29 +64,27 @@ class NS_Carousel_Owl_Options_Meta {
     /**
      *  Save the custom field data
      */
-    public function ns_carousel_owl_options_save_custom_meta( $post_id ){
-        global $post;
-
+    public function ns_carousel_owl_options_save_custom_meta( $post_id, $post, $update ){
 		// Verify the nonce before proceeding.
-        if( !isset( $_POST['owl_options_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['owl_options_meta_box_nonce'], basename( __FILE__ ) ) ) return;
+        if( !isset( $_POST['owl_options_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['owl_options_meta_box_nonce'], basename( __FILE__ ) ) ){
+			return;
+		}
 
         // Stop WP from clearing custom fields on autosave
-        if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
+        if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ){
+			return;
+		}
 
-        if( !current_user_can('edit_post', $post_id ) )
+        if( !current_user_can('edit_post', $post_id ) ){
     		return $post_id;
+		}
 
-        if( $post->post_type != 'ns_carousel' ) return;
-
-        // ------------------------------  OWL CAROUSEL: ITEMS  ------------------------------ //
-	    if( !empty( $_POST['ns_carousel_options__items'] ) ){
-	        //  Sanitize values as much as possible before storing
-	        $options_items = intval( $_POST['ns_carousel_options__items'] );
-	        update_post_meta( $post_id, 'ns-carousel-options-items', $options_items );
+        if( $post->post_type != 'ns_carousel' ){
+			return;
+		}
 
-		} else {
-			delete_post_meta( $post_id, 'ns-carousel-options-items');
-		}
+		//  Save fields
+		$this->metabox_fields->save_fields( $post_id );
     }
 
 	/**
