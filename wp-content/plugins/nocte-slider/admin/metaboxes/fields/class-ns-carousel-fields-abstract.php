@@ -186,16 +186,65 @@ abstract class NS_Carousel_Field {
     public function format_data( $value ){
         switch( $this->type ){
             case 'text':
+            case 'url':
                 $value = sanitize_text_field( $value );
                 break;
-            case 'hidden':
-            case 'email':
-            case 'url':
             case 'number':
+                if( $value % 1 > 0 ){
+                    $value = floatval( $value );
+
+                } else {
+                    $value = intval( $value );
+                }
+                break;
+            case 'checkbox':
+                if( empty( $value ) ){
+                    $value = 0;
+                } else {
+                    $value = 1;
+                }
+                break;
+            case 'email':
+                $value = sanitize_email( $value );
+                break;
+            default:
                 break;
         }
 
         return $value;
+    }
+
+
+    /**
+     *  Save submited value
+     */
+    public function save_value( $post_id ){
+        if( empty( $post_id ) ){
+            return false;
+        }
+        $this->post_id = $post_id;
+
+        //  Attempt to get value
+        $value = '';
+        if( isset( $_POST[ $this->input_name ] ) ){
+            $value = $_POST[ $this->input_name ];
+        }
+        //  Validate the value
+        $valid_submission = $this->validate_submission( $value );
+        if( false === $valid_submission ){
+            return;
+        }
+        //  Format the value
+        $formatted_value = $this->format_data( $valid_submission );
+
+        //  Save the formatted value
+        if( empty( $formatted_value ) && 0 !== $formatted_value ){
+            delete_post_meta( $this->post_id, $this->meta_key );
+
+        } else {
+            update_post_meta( $this->post_id, $this->meta_key, $formatted_value );
+            //print'<pre>Updated value: post_id = '.$this->post_id.', meta_key = '.$this->meta_key.', value = '.print_r($formatted_value,true).'</pre>';
+        }
     }
 
     /**

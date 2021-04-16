@@ -76,4 +76,20 @@ class NS_Carousel_Metabox_Fields {
 
         return true;
     }
+
+    /**
+     * Save field data
+     */
+    public function save_fields( $post_id ){
+        if( empty( $post_id ) ){
+            return false;
+        }
+
+        //print'<pre>fields = '.print_r($this->fields,true).'</pre>';//exit;
+        //  Loop through fields, validate, sanitise and save data
+        foreach( $this->fields as $meta_field ){
+            $meta_field->save_value( $post_id );
+        }
+        //exit;
+    }
 }
