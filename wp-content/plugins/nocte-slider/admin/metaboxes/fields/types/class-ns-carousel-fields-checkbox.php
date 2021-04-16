@@ -58,4 +58,11 @@ class NS_Carousel_Field_Checkbox extends NS_Carousel_Field {
         <?php
     }
 
+    /**
+     *  Clear value
+     */
+    public function clear_value(){
+        unset( $this->value );
+    }
+
 }

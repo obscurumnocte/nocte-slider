@@ -214,6 +214,19 @@ abstract class NS_Carousel_Field {
         return $value;
     }
 
+    /**
+     *  Set value
+     */
+    public function set_value( $value ){
+        $this->value = $value;
+    }
+
+    /**
+     *  Clear value
+     */
+    public function clear_value(){
+        $this->value = '';
+    }
 
     /**
      *  Save submited value
