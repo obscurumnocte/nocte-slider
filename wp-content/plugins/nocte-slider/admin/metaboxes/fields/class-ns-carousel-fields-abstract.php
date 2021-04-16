@@ -40,6 +40,7 @@ abstract class NS_Carousel_Field {
         //  Set up field variables
         $this->name = $field_name;
         $this->meta_key = 'ns-carousel-options--'. $field_name;
+        $this->input_name = 'ns-carousel-'. $field_name;
         //  Loop through field_config and set field variables
         foreach( $field_config as $key => $value ){
             $this->$key = $value;
@@ -109,9 +110,8 @@ abstract class NS_Carousel_Field {
         //  Add type attribute
         $this->attributes['type'] = $this->type;
         //  Set up input name
-        $input_name = 'ns-carousel-'. $this->name;
-        $this->attributes['name'] = $input_name;
-        $input_name = preg_replace('/[\[\]]/', '', $input_name );
+        $this->attributes['name'] = $this->input_name;
+        $input_name = preg_replace('/[\[\]]/', '', $this->input_name );
         $this->attributes['id'] = empty( $this->attributes['id'] ) ? $input_name : $this->attributes['id'];
         $this->attributes['class'] = empty( $this->attributes['class'] ) ? $input_name : $this->attributes['class'];
         //  Check value and default

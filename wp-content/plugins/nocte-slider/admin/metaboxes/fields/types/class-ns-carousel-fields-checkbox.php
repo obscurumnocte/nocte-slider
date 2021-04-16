@@ -30,9 +30,8 @@ class NS_Carousel_Field_Checkbox extends NS_Carousel_Field {
         //  Add type attribute
         $this->attributes['type'] = $this->type;
         //  Set up input name
-        $input_name = 'ns-carousel-'. $this->name;
-        $this->attributes['name'] = $input_name;
-        $input_name = preg_replace('/[\[\]]/', '', $input_name );
+        $this->attributes['name'] = $this->input_name;
+        $input_name = preg_replace('/[\[\]]/', '', $this->input_name );
         $this->attributes['id'] = empty( $this->attributes['id'] ) ? $input_name : $this->attributes['id'];
         $this->attributes['class'] = empty( $this->attributes['class'] ) ? $input_name : $this->attributes['class'];
         //  Check value and default
