@@ -26,6 +26,8 @@ abstract class NS_Carousel_Field {
 
     public $attributes;
 
+    public $errors;
+
     /**
      *  Field constructor to set up field variables and actions/filters
      */
@@ -44,12 +46,19 @@ abstract class NS_Carousel_Field {
         }
 
         //  Load in any stored value
-        $this->load_stored_values();
+        add_action('ns-carousel-load-meta-data', array( $this, 'setup_post_id'), 10 );
+        add_action('ns-carousel-load-meta-data', array( $this, 'load_stored_values'), 11 );
+        add_action('ns-carousel-load-meta-data', array( $this, 'load_stored_errors'), 11 );
+    }
 
-        if( !empty( $this->type ) ){
-            //  Set up hooks for submission processing
-            add_filter('ns-carousel-validate-'. $this->type .'-field', array( $this, 'validate_submission') );
-            add_filter('ns-carousel-format-data-'. $this->type .'-field', array( $this, 'format_data') );
+    /**
+     *  Set up post ID
+     */
+    public function setup_post_id(){
+        global $post;
+        //  Set up post_id
+        if( !empty( $post->ID ) ){
+            $this->post_id = $post->ID;
         }
     }
 
@@ -62,10 +71,25 @@ abstract class NS_Carousel_Field {
         }
         //  Retrieve stored data and check if value should be set
         $stored_val = get_post_meta( $this->post_id, $this->meta_key, true );
-        if( !empty( $stored_val ) || 0 === $stored_val ){
+        if( !empty( $stored_val ) || 0 === $stored_val || '0' === $stored_val ){
             $this->value = $stored_val;
         }
         return true;
+    }
+
+    /**
+     *  Check for errors
+     */
+    public function load_stored_errors(){
+        //  Initialize error array
+        $this->errors = get_transient( $this->name .'--'. $this->post_id );
+        //  Check transient and delete after setting
+        if( empty( $this->errors ) ){
+            $this->errors = array();
+
+        } else {
+            delete_transient( $this->name .'--'. $this->post_id );
+        }
     }
 
     /**
@@ -98,12 +122,15 @@ abstract class NS_Carousel_Field {
 
         $this->attributes = apply_filters('ns-carousel-field-attributes-'. $this->type, $this->attributes, $this );
 
+        $field_errors = $this->get_validation_errors_markup();
+
         //  Add markup
         ?>
             <div class="field-wrapper <?php echo esc_attr( $this->type ); ?>-field-wrapper">
                 <label>
                     <p><?php echo $field_label; ?><?php echo $field_desc; ?></p>
                     <input <?php echo $this->input_attrs(); ?>>
+                    <?php echo $field_errors; ?>
                 </label>
             </div>
         <?php
@@ -113,14 +140,18 @@ abstract class NS_Carousel_Field {
      *  Validate the submited data
      */
     public function validate_submission( $value ){
-        if( empty( $value ) && $this->required ){
+        //  Check value for required
+        if( empty( $value ) && 0 !== $value && $this->required ){
             //  Need to give a validation error
+            $this->validation_error( __('This field is required', 'ns') );
             return false;
         }
-        switch ($this->type){
+        //  Check value for type
+        switch( $this->type ){
             case 'email':
                 if( !is_email( $value ) ){
                     //  Need to give a validation error
+                    $this->validation_error(  __('Not a valid email address', 'ns') );
                     return false;
                 }
                 break;
@@ -128,6 +159,7 @@ abstract class NS_Carousel_Field {
             case 'url':
                 if( !wp_http_validate_url( $value ) ){
                     //  Need to give a validation error
+                    $this->validation_error(  __('Not a valid URL', 'ns') );
                     return false;
                 }
                 break;
@@ -135,15 +167,17 @@ abstract class NS_Carousel_Field {
             case 'number':
                 if( !is_numeric( $value ) ){
                     //  Need to give a validation error
+                    $this->validation_error(  __('Not a valid number', 'ns') );
                     return false;
                 }
                 break;
 
             case 'text':
             case 'hidden':
+            default:
                 break;
         }
-        return true;
+        return $value;
     }
 
     /**
@@ -174,6 +208,34 @@ abstract class NS_Carousel_Field {
         </div>
     <?php
     }
+
+    /**
+     * Submitted validation errors
+     */
+    protected function validation_error( $msg ){
+        if( empty( $msg ) ){
+            return;
+        }
+        $this->errors[] = $msg;
+        set_transient( $this->name .'--'. $this->post_id, $this->errors, 30 );
+        return;
+    }
+
+    /**
+     * Create the validation error markup
+     */
+    protected function get_validation_errors_markup(){
+        $field_errors = '';
+        if( !empty( $this->errors ) ){
+            $field_errors .= '<div class="error-wrapper validation-errors"><ul>';
+            foreach( $this->errors as $an_error ){
+                $field_errors .= '<li>'. $an_error .'</li>';
+            }
+            $field_errors .= '</ul></div>';
+        }
+        return $field_errors;
+    }
+
 
     /**
      * Create input attributes for markup

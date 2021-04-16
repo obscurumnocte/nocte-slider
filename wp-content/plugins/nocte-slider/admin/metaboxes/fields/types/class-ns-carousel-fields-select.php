@@ -48,6 +48,8 @@ class NS_Carousel_Field_Select extends NS_Carousel_Field {
 
         $this->attributes = apply_filters('ns-carousel-field-attributes-'. $this->type, $this->attributes, $this );
 
+        $field_errors = $this->get_validation_errors_markup();
+
         //  Add markup
         ?>
             <div class="field-wrapper <?php echo esc_attr( $this->type ); ?>-field-wrapper">
@@ -64,6 +66,7 @@ class NS_Carousel_Field_Select extends NS_Carousel_Field {
                         endforeach;
                     ?>
                     </select>
+                    <?php echo $field_errors; ?>
                 </label>
             </div>
         <?php
