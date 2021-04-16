@@ -56,7 +56,7 @@ class NS_Carousel_Field_Select extends NS_Carousel_Field {
                     <p><?php echo $field_label; ?><?php echo $field_desc; ?></p>
                     <select <?php echo $this->input_attrs( $field_atts ); ?>>
                     <?php //  Loop through options
-                        foreach( $field_options['options'] as $option_val => $option_label ):
+                        foreach( $this->options as $option_val => $option_label ):
                             //  Check for selected
                             $option_selected = $field_value == $option_val ? ' selected="selected"' : '';
                     ?>

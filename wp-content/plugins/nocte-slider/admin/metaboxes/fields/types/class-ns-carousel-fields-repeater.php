@@ -19,6 +19,16 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
         if( !has_action('ns_carousel_metabox_fields_common_code', 'NS_Carousel_Field_Repeater::add_svgs') ){
             add_action('ns_carousel_metabox_fields_common_code', 'NS_Carousel_Field_Repeater::add_svgs');
         }
+
+        //  Check for subfields, is exist, set up fields
+        if( !empty( $this->subfields ) ){
+            //  Get instance of metabox fields to add subfields
+            $this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->subfields, false );
+            //print'<pre>metabox_fields = '.print_r($this->metabox_fields->fields,true).'</pre>';
+            foreach( $this->metabox_fields->fields as $a_field ){
+                $a_field->input_name = 'ns-carousel-'. $this->name .'[]['. $a_field->name .']';
+            }
+        }
     }
 
     /**
@@ -42,9 +52,6 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
 
         //  Check values and display repeater groups with existing saved values. Add a template of repeater fields to be used for new data.
         $field_values = isset( $this->value ) && is_array( $this->value ) ? $this->value : array();
-
-        //  Get instance of metabox fields to add subfields
-        $metabox_fields = new NS_Carousel_Metabox_Fields();
 
         //  Add markup
         ?>
@@ -90,9 +97,10 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
                 <div class="repeater-template repeater-wrapper">
                     <div class="collapsable-content">
                     <?php //  Loop through subfields and add individually
-                        foreach( $this->subfields as $subfield_name => $subfield_options ){
-                            $metabox_fields->check_options_method( $subfield_name, $subfield_options );
-                        }
+                        foreach( $this->metabox_fields->fields as $a_field ):
+                            $a_field->clear_value();
+                            $a_field->display_field();
+                        endforeach;
                     ?>
                     </div>
                     <div class="controls-wrapper">

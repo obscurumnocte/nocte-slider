@@ -23,6 +23,9 @@ class NS_Carousel_Owl_Options_Meta {
 	public function __construct() {
         add_action('add_meta_boxes', array( $this, 'ns_carousel_owl_options_metabox') );
         add_action('save_post', array( $this, 'ns_carousel_owl_options_save_custom_meta'), 10, 3 );
+
+		//  Set up fields for processing
+		$this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->get_fields_config() );
 	}
 
     /**
@@ -51,15 +54,10 @@ class NS_Carousel_Owl_Options_Meta {
     	// Use nonce for verification
     	wp_nonce_field( basename( __FILE__ ), 'owl_options_meta_box_nonce');
 
-		//  Set up fields
-		$option_fields = $this->get_fields_config();
-
-		//  Set up fields class for processing
-		$this->metabox_fields = new NS_Carousel_Metabox_Fields();
 		//  Display fields
 	?>
 		<div id="ns_carousel_owl_options">
-			<?php $this->metabox_fields->add_markup( $option_fields ); ?>
+			<?php $this->metabox_fields->add_markup( $this->get_fields_config() ); ?>
 		</div>
     <?php
     }
