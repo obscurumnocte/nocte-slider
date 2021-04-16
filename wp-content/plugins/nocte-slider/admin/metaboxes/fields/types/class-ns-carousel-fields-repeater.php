@@ -151,4 +151,50 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
     <?php
     }
 
+    /**
+     *  Save submited value
+     */
+    public function save_value( $post_id ){
+        if( empty( $post_id ) ){
+            return false;
+        }
+        $this->post_id = $post_id;
+
+        //  Attempt to get value
+        $value = '';
+        if( isset( $_POST[ $this->input_name ] ) ){
+            $value = $_POST[ $this->input_name ];
+        }
+
+        //  Loop through the values and fields to validate and format the submitted data
+        if( !empty( $value ) ):
+            foreach( $value as $val_key => $repeater_values ):
+                //  Set up values on metabox fields
+                foreach( $this->metabox_fields->fields as $a_field ){
+                    if( array_key_exists( $a_field->name, $repeater_values ) ){
+                        if( false !== $a_field->validate_submission( $repeater_values[ $a_field->name ] ) ){
+                            $value[ $val_key ][ $a_field->name ] = $a_field->format_data( $repeater_values[ $a_field->name ] );
+
+                        } else {
+                            $value[ $val_key ][ $a_field->name ] = '';
+                        }
+
+                    } else {
+                        //print'<pre>field data = '.print_r($a_field,true).'</pre>';
+                        $value[ $val_key ][ $a_field->name ] = $a_field->format_data('');
+                    }
+                }
+            endforeach;
+        endif;
+
+        //  Save the value
+        if( empty( $value ) ){
+            delete_post_meta( $this->post_id, $this->meta_key );
+
+        } else {
+            update_post_meta( $this->post_id, $this->meta_key, $value );
+            //print'<pre>Updated value: post_id = '.$this->post_id.', meta_key = '.$this->meta_key.', value = '.print_r($value,true).'</pre>';
+        }
+    }
+
 }
