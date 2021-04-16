@@ -32,6 +32,8 @@ class NS_Carousel_Owl_Options_Meta {
         global $post;
 
         if( empty( $post ) ) return;
+
+		do_action('ns-carousel-load-meta-data', $post );
 
     	add_meta_box('ns-carousel-owl-options',
     		__('Owl Carousel Options', 'ns'),
