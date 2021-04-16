@@ -13,8 +13,8 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
     /**
      *  Field constructor to set up field variables and actions/filters
      */
-    public function __construct( $field_name, $field_config, $post_id ){
-        parent::__construct( $field_name, $field_config, $post_id );
+    public function __construct( $field_name, $field_config ){
+        parent::__construct( $field_name, $field_config );
 
         if( !has_action('ns_carousel_metabox_fields_common_code', 'NS_Carousel_Field_Repeater::add_svgs') ){
             add_action('ns_carousel_metabox_fields_common_code', 'NS_Carousel_Field_Repeater::add_svgs');

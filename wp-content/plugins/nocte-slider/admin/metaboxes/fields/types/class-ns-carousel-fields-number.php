@@ -13,8 +13,8 @@ class NS_Carousel_Field_Number extends NS_Carousel_Field {
     /**
      *  Field constructor to set up field variables and actions/filters
      */
-    public function __construct( $field_name, $field_config, $post_id ){
-        parent::__construct( $field_name, $field_config, $post_id );
+    public function __construct( $field_name, $field_config ){
+        parent::__construct( $field_name, $field_config );
 
         //  Filter default attributes to check for and add number field attributes
         add_filter('ns-carousel-field-attributes-'. $this->type, array( $this, 'filter_attributes'), 10, 2 );

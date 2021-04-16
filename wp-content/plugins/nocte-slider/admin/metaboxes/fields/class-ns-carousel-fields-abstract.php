@@ -29,14 +29,11 @@ abstract class NS_Carousel_Field {
     /**
      *  Field constructor to set up field variables and actions/filters
      */
-    public function __construct( $field_name, $field_config, $post_id ){
+    public function __construct( $field_name, $field_config ){
         //  Check field_name and field_config
-        if( empty( $field_name ) || empty( $field_config ) || !is_array( $field_config ) || empty( $post_id ) ){
+        if( empty( $field_name ) || empty( $field_config ) || !is_array( $field_config ) ){
             return;
         }
-
-        //  Set up post_id
-        $this->post_id = $post_id;
 
         //  Set up field variables
         $this->name = $field_name;

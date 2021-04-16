@@ -13,8 +13,8 @@ class NS_Carousel_Field_Subfields extends NS_Carousel_Field {
     /**
      *  Field constructor to set up field variables and actions/filters
      */
-    public function __construct( $field_name, $field_config, $post_id ){
-        parent::__construct( $field_name, $field_config, $post_id );
+    public function __construct( $field_name, $field_config ){
+        parent::__construct( $field_name, $field_config );
 
 
     }
