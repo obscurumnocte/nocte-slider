@@ -1,6 +1,7 @@
 <?php
 /**
  * NS Carousel Posttype - Add Owl Carousel option metabox and fields
+ * Self instantiated
  */
 
 defined('ABSPATH') || exit;
