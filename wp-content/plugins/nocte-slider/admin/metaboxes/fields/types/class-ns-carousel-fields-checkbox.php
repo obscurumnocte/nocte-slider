@@ -36,8 +36,8 @@ class NS_Carousel_Field_Checkbox extends NS_Carousel_Field {
         $this->attributes['class'] = empty( $this->attributes['class'] ) ? $input_name : $this->attributes['class'];
         //  Check value and default
         $this->attributes['value'] = 1;
-        $this->default = isset( $this->default ) && $this->default == 1 ? 'checked' : '';
-        $this->attributes['checked'] = isset( $this->value ) ? ( $this->value == 1 ? 'checked' : '' ) : $this->default;
+        $default = isset( $this->default ) && $this->default == 1 ? 'checked' : '';
+        $this->attributes['checked'] = isset( $this->value ) ? ( $this->value == 1 ? 'checked' : '' ) : $default;
 
         $this->attributes = apply_filters('ns-carousel-field-attributes-'. $this->type, $this->attributes, $this );
 

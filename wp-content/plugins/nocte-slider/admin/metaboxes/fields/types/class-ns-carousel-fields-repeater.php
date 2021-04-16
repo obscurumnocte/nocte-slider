@@ -60,22 +60,31 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
                 <div class="repeater-values-wrapper collapsable-fields">
                 <?php // Check values and loop through to display saved data
                     if( !empty( $field_values ) ):
+                        $counter = 0;
                         foreach( $field_values as $repeater_values ):
-                            //  Set up values on subfields
-                            foreach( $repeater_values as $repeater_val_key => $repeater_val_value ){
-                                if( isset( $this->subfields[ $field_name .'[]['. $repeater_val_key .']'] ) ){
-                                    $this->subfields[ $field_name .'[]['. $repeater_val_key .']']['value'] = $repeater_val_value;
-                                }
-                            }
+                            //print'<pre>repeater_values = '.print_r($repeater_values,true).'</pre>';
                 ?>
                             <div class="repeater-wrapper">
                                 <div class="collapsable-content">
                                     <?php //  Loop through subfields and add individually
-                                        foreach( $this->subfields as $subfield_name => $subfield_options ){
-                                            $metabox_fields->check_options_method( $subfield_name, $subfield_options );
-                                            //  Clear previously set values
-                                            unset( $this->subfields[ $subfield_name ]['value'] );
-                                        }
+                                        foreach( $this->metabox_fields->fields as $a_field ):
+                                            //  Set up field value
+                                            //print'<pre>repeater field = '.print_r($a_field,true).'</pre>';
+                                            $a_field->clear_value();
+                                            if( array_key_exists( $a_field->name, $repeater_values ) ){
+                                                //print'<pre>field value = '.print_r($repeater_values[ $a_field->name ],true).'</pre>';
+                                                $a_field->set_value( $repeater_values[ $a_field->name ] );
+                                            }
+                                            //  Change field name to group subfields together correctly
+                                            $tmp_field_name = $a_field->input_name;
+                                            $a_field->input_name = 'ns-carousel-'. $this->name .'['. $counter .']'. str_replace( $this->name .'[]', '', $a_field->name );
+                                            //print'<pre>'.$a_field->input_name.'</pre>';
+                                            //  Display field
+                                            $a_field->display_field();
+                                            //  Clear preset value and reset field name
+                                            $a_field->clear_value();
+                                            $a_field->input_name = $tmp_field_name;
+                                        endforeach;
                                     ?>
                                 </div>
                                 <div class="controls-wrapper">
@@ -86,6 +95,7 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
                                 </div>
                             </div>
                 <?php
+                            $counter++;
                         endforeach;
                     endif;
                 ?>

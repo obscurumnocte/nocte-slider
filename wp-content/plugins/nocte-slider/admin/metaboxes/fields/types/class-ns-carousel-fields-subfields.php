@@ -42,6 +42,8 @@ class NS_Carousel_Field_Subfields extends NS_Carousel_Field {
         $field_label = !empty( $this->label ) ? '<span class="label-text">'. $this->label .'</span>' : '';
         //  Check field description
         $field_desc = !empty( $this->desc ) ? '<span class="field-desc"> - '. $this->desc .'</span>' : '';
+        //  Check for value for subfields
+        $field_values = isset( $this->value ) && is_array( $this->value ) ? $this->value : array();
 
         //  Add markup
         ?>
