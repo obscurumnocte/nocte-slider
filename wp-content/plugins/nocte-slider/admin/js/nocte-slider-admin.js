@@ -23,6 +23,12 @@
 			});
 		});
 
+		//  Event handle the form submit to remove the repeater template fields to prevent issues with submissions
+		$(document).on('submit', '.wp-admin.post-php form#post', function(e){
+			//  Get repeater templates and remove them
+			$('.repeater-template').remove();
+		});
+
 		//  Repeater Item Accordion button - dynamic through document clicks
 		$(document).on('click', '.repeater-wrapper .collapse-btn', function(e){
 			e.preventDefault();
