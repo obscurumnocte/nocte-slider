@@ -16,77 +16,75 @@ class NS_Carousel_Owl_Options_Meta {
 	 */
 	protected $metabox_fields;
 
-
-	/**
+	/**
 	 * Constructor.
-	 */
-	public function __construct() {
-        add_action('add_meta_boxes', array( $this, 'ns_carousel_owl_options_metabox') );
-        add_action('save_post', array( $this, 'ns_carousel_owl_options_save_custom_meta'), 10, 3 );
+	 */
+	public function __construct(){
+        add_action('add_meta_boxes', array( $this, 'ns_carousel_owl_options_metabox') );
+        add_action('save_post', array( $this, 'ns_carousel_owl_options_save_custom_meta'), 10, 3 );
 
 		//  Set up fields for processing
 		$this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->get_fields_config() );
-	}
-
-    /**
+	}
+
+    /**
      * Add Meta Box and custom fields
-     */
-    public function ns_carousel_owl_options_metabox(){
-        global $post;
-
-        if( empty( $post ) ) return;
+     */
+    public function ns_carousel_owl_options_metabox(){
+        global $post;
+        if( empty( $post ) ) return;
 
 		do_action('ns-carousel-load-meta-data', $post );
-
-    	add_meta_box('ns-carousel-owl-options',
-    		__('Owl Carousel Options', 'ns'),
-    		array( $this, 'ns_carousel_owl_options_fields'),
-    		'ns_carousel',
-    		'advanced'
-    	);
-    }
-
-
-    /**
+
+    	add_meta_box('ns-carousel-owl-options',
+    		__('Owl Carousel Options', 'ns'),
+    		array( $this, 'ns_carousel_owl_options_fields'),
+    		'ns_carousel',
+    		'advanced'
+    	);
+    }
+
+
+    /**
      * Displays fields for Owl Carousel Options
-     */
-    public function ns_carousel_owl_options_fields(){
-    	// Use nonce for verification
-    	wp_nonce_field( basename( __FILE__ ), 'owl_options_meta_box_nonce');
+     */
+    public function ns_carousel_owl_options_fields(){
+    	// Use nonce for verification
+    	wp_nonce_field( basename( __FILE__ ), 'owl_options_meta_box_nonce');
 
 		//  Display fields
-	?>
-		<div id="ns_carousel_owl_options">
+	?>
+		<div id="ns_carousel_owl_options">
 			<?php $this->metabox_fields->add_markup( $this->get_fields_config() ); ?>
 		</div>
-    <?php
-    }
-
-    /**
-     *  Save the custom field data
-     */
-    public function ns_carousel_owl_options_save_custom_meta( $post_id, $post, $update ){
-		// Verify the nonce before proceeding.
+    <?php
+    }
+
+    /**
+     *  Save the custom field data
+     */
+    public function ns_carousel_owl_options_save_custom_meta( $post_id, $post, $update ){
+		// Verify the nonce before proceeding.
         if( !isset( $_POST['owl_options_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['owl_options_meta_box_nonce'], basename( __FILE__ ) ) ){
-			return;
+			return;
 		}
-
+
         // Stop WP from clearing custom fields on autosave
         if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ){
-			return;
+			return;
 		}
-
+
         if( !current_user_can('edit_post', $post_id ) ){
-    		return $post_id;
+    		return $post_id;
 		}
-
+
         if( $post->post_type != 'ns_carousel' ){
-			return;
+			return;
 		}
 
 		//  Save fields
 		$this->metabox_fields->save_fields( $post_id );
-    }
+    }
 
 	/**
 	 * Set up the fields array
