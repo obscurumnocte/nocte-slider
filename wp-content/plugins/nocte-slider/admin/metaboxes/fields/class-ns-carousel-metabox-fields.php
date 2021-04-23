@@ -116,4 +116,13 @@ class NS_Carousel_Metabox_Fields {
         }
         //exit;
     }
+
+
+	/**
+	 * Utility function to check for valid json
+	 */
+	private function is_json( $json_data ){
+		json_decode( $json_data );
+		return ( ( json_last_error() == JSON_ERROR_NONE ) && !is_numeric( $json_data ) );
+	}
 }
