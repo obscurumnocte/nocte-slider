@@ -51,25 +51,25 @@ class Nocte_Slider_Admin {
 		/**
 		 * The classes for field set up
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/class-ns-carousel-fields-abstract.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/types/class-ns-carousel-fields-checkbox.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/types/class-ns-carousel-fields-number.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/types/class-ns-carousel-fields-repeater.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/types/class-ns-carousel-fields-select.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/types/class-ns-carousel-fields-subfields.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/types/class-ns-carousel-fields-text.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/class-ns-carousel-fields-abstract.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-checkbox.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-number.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-repeater.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-select.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-subfields.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-text.php';
 		/**
 		 * The class responsible for creating field markup.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/fields/class-ns-carousel-metabox-fields.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/class-ns-carousel-metabox-fields.php';
 		/**
 		 * The class responsible for creating field markup.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-ns-carousel-tiles-meta.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/class-ns-carousel-slides-meta.php';
 		/**
 		 * The class responsible for creating field markup.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/metaboxes/class-ns-carousel-owl-meta.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/class-ns-carousel-owl-meta.php';
 	}
 
 	/**
