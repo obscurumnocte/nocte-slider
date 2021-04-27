@@ -30,6 +30,7 @@ class Nocte_Slider_Admin {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/class-ns-carousel-fields-abstract.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-checkbox.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-image.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-number.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-repeater.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) .'admin/metaboxes/fields/types/class-ns-carousel-fields-select.php';

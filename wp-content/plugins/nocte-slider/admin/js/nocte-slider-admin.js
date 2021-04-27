@@ -85,4 +85,41 @@
 		});
 	});
 
+
+	//  Image upload field buttons
+	// on upload button click
+	$(document).on( 'click', '.ns-upl', function(e){
+		e.preventDefault();
+
+		var $button = $(this);
+		var custom_uploader = wp.media({
+			title: $button.attr('ns-media-title'),
+			library : {
+				uploadedTo : wp.media.view.settings.post.id, // attach to the current post
+				type : 'image'
+			},
+			button: {
+				text: $button.attr('ns-media-btn-text') // button label text
+			},
+			multiple: false
+
+		}).on('select', function(){ // it also has "open" and "close" events
+			var attachment = custom_uploader.state().get('selection').first().toJSON();
+			$button.find('img').attr('src', attachment.url );
+			$button.next().val( attachment.id )
+				   .next().show();
+		}).open();
+
+	});
+
+	// on remove button click
+	$(document).on('click', '.ns-rmv', function(e){
+		e.preventDefault();
+
+		var $button = $(this);
+		$button.next().val(''); // emptying the hidden field
+		$button.hide()
+			   .prev().attr('src', $button.attr('data-placeholder') );
+	});
+
 })( jQuery );

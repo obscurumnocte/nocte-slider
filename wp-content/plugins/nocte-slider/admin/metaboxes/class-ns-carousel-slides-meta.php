@@ -24,7 +24,7 @@ class NS_Carousel_Slides_Meta {
         add_action('save_post', array( $this, 'ns_carousel_slides_save_custom_meta') );
 
 		//  Set up fields for processing
-		$this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->get_fields_config() );
+		$this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->get_fields_config(), false );
 	}
 
     /**
@@ -55,7 +55,7 @@ class NS_Carousel_Slides_Meta {
 		//  Display fields
 	?>
 		<div id="ns_carousel_tiles_options">
-			<?php $this->metabox_fields->add_markup( $this->get_fields_config(), false ); ?>
+			<?php $this->metabox_fields->add_markup( $this->get_fields_config() ); ?>
 		</div>
     <?php
 	}

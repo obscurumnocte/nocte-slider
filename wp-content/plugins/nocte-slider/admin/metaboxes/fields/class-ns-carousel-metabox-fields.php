@@ -17,9 +17,11 @@ class NS_Carousel_Metabox_Fields {
      * Set up class
      */
     public function __construct( $option_fields, $include_groups = true ){
+        $this->include_groups = $include_groups;
+
         $this->fields = array();
 
-        if( $include_groups ){
+        if( $this->include_groups ){
             //  Set up fields from provided options
             foreach( $option_fields as $group_fields ){
                 foreach( $group_fields['field_list'] as $field_name => $field_options ){
@@ -40,32 +42,46 @@ class NS_Carousel_Metabox_Fields {
     public function add_markup( $options ){
         if( empty( $options ) ) return;
 
-        //  Options are grouped, add group markup
-        $group_count = 0;
-        foreach( $options as $option_group ):
-            $group_count++;
-            $closed_class = $group_count > 1 ? ' group-closed' : '';
-            $desc = !empty( $option_group['desc'] ) ? '<p>'. $option_group['desc'] .'</p>' : '';
-        ?>
-            <div class="group-wrapper group-<?php echo esc_attr( $option_group['name'] ); echo $closed_class; ?>">
-                <header class="group-header">
-                    <h3><?php echo $option_group['label']; ?></h3>
-                    <?php echo $desc; ?>
-                </header>
+        if( $this->include_groups ):
+            //  Options are grouped, add group markup
+            $group_count = 0;
+            foreach( $options as $option_group ):
+                $group_count++;
+                $closed_class = $group_count > 1 ? ' group-closed' : '';
+                $desc = !empty( $option_group['desc'] ) ? '<p>'. $option_group['desc'] .'</p>' : '';
+            ?>
+                <div class="group-wrapper group-<?php echo esc_attr( $option_group['name'] ); echo $closed_class; ?>">
+                    <header class="group-header">
+                        <h3><?php echo $option_group['label']; ?></h3>
+                        <?php echo $desc; ?>
+                    </header>
 
-                <div class="fieldset-wrapper">
-                <?php
-                    // Loop through options and add fields
-                    foreach( $this->fields as $a_field ):
-                        if( array_key_exists( $a_field->name, $option_group['field_list'] ) ){
-                            $a_field->display_field();
-                        }
-                    endforeach;
-                ?>
+                    <div class="fieldset-wrapper">
+                    <?php
+                        // Loop through options and add fields
+                        foreach( $this->fields as $a_field ):
+                            if( array_key_exists( $a_field->name, $option_group['field_list'] ) ){
+                                $a_field->display_field();
+                            }
+                        endforeach;
+                    ?>
+                    </div>
                 </div>
+            <?php
+            endforeach;
+
+        else:
+        ?>
+            <div class="fieldset-wrapper">
+            <?php
+                // Loop through options and add fields
+                foreach( $this->fields as $a_field ):
+                    $a_field->display_field();
+                endforeach;
+            ?>
             </div>
         <?php
-        endforeach;
+        endif;
 
         // Add action to allow fields to add common code i.e. SVGs
         do_action('ns_carousel_metabox_fields_common_code');
@@ -115,6 +131,17 @@ class NS_Carousel_Metabox_Fields {
             $meta_field->save_value( $post_id );
         }
         //exit;
+    }
+
+    /**
+     * Add markup to display an error message where the field would appear
+     */
+    protected function display_error( $error_msg ){
+    ?>
+        <div class="ns-carousel-error">
+            <p><strong><?php _e('ERROR:', 'ns'); ?></strong> <?php echo $error_msg; ?></p>
+        </div>
+    <?php
     }
 
 
