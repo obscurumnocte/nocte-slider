@@ -17,24 +17,6 @@
 class Nocte_Slider {
 
 	/**
-	 * The unique identifier of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
-	 */
-	protected $plugin_name;
-
-	/**
-	 * The current version of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
-	 */
-	protected $version;
-
-	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -44,13 +26,6 @@ class Nocte_Slider {
 	 * @since    1.0.0
 	 */
 	public function __construct(){
-		if( defined('NOCTE_SLIDER_VERSION') ){
-			$this->version = NOCTE_SLIDER_VERSION;
-		} else {
-			$this->version = '1.0.0';
-		}
-		$this->plugin_name = 'nocte-slider';
-
 		$this->load_dependencies();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
@@ -85,7 +60,7 @@ class Nocte_Slider {
 	 */
 	public function set_locale() {
 		load_plugin_textdomain(
-			'nocte-slider',
+			Nocte_Slider_Data::get_plugin_name(),
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) .'/languages/'
 		);
@@ -99,7 +74,7 @@ class Nocte_Slider {
 	 * @access   private
 	 */
 	private function define_admin_hooks(){
-		$plugin_admin = new Nocte_Slider_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Nocte_Slider_Admin();
 
 		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles') );
 		add_action('admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts') );
@@ -117,31 +92,10 @@ class Nocte_Slider {
 	 * @access   private
 	 */
 	private function define_public_hooks(){
-		$plugin_public = new Nocte_Slider_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Nocte_Slider_Public();
 
 		add_action('wp_enqueue_scripts', array( $plugin_public, 'enqueue_styles') );
 		add_action('wp_enqueue_scripts', array( $plugin_public, 'enqueue_scripts') );
-	}
-
-	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The name of the plugin.
-	 */
-	public function get_plugin_name(){
-		return $this->plugin_name;
-	}
-
-	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The version number of the plugin.
-	 */
-	public function get_version(){
-		return $this->version;
 	}
 
 }
