@@ -52,13 +52,13 @@ class NS_Carousel_Field_Image extends NS_Carousel_Field {
 
         $field_errors = $this->get_validation_errors_markup();
 
-        $default_img = plugins_url() .'/'. Nocte_Slider_Data::get_plugin_name() .'/admin/imgs/placeholder-300x300.png';
+        $add_img = plugins_url() .'/'. Nocte_Slider_Data::get_plugin_name() .'/admin/imgs/plus-circle.svg';
         $image = wp_get_attachment_image_src( $this->value );
         if( !empty( $image ) ){
             $image = $image[0];
 
         } else {
-            $image = $default_img;
+            $image = $add_img;
         }
 
         //  Add markup
