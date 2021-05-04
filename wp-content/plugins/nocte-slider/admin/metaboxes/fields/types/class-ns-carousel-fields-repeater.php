@@ -77,7 +77,7 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
                                             }
                                             //  Change field name to group subfields together correctly
                                             $tmp_field_name = $a_field->input_name;
-                                            $a_field->input_name = 'ns-carousel-'. $this->name .'['. $counter .']'. str_replace( $this->name .'[]', '', $a_field->name );
+                                            $a_field->input_name = 'ns-carousel-'. $this->name .'['. $counter .']['. str_replace( $this->name .'[]', '', $a_field->name ) .']';
                                             //print'<pre>'.$a_field->input_name.'</pre>';
                                             //  Display field
                                             $a_field->display_field();
@@ -169,6 +169,7 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
         //  Loop through the values and fields to validate and format the submitted data
         if( !empty( $value ) ):
             foreach( $value as $val_key => $repeater_values ):
+                //print'<pre>repeater_values = '.print_r($repeater_values,true).'</pre>';
                 //  Set up values on metabox fields
                 foreach( $this->metabox_fields->fields as $a_field ){
                     if( array_key_exists( $a_field->name, $repeater_values ) ){
