@@ -104,7 +104,8 @@ class NS_Carousel_Slides_Meta {
 							'type'		=> 'image',
 							'default'	=> 0,
 							'label'		=> __('Slide image', 'ns'),
-							'desc'		=> __('Set the image to be used in the slide.', 'ns')
+							'desc'		=> __('Set the image to be used in the slide.', 'ns'),
+							'required'	=> true
 						),
 					)
 				)
