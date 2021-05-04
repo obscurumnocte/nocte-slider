@@ -41,6 +41,7 @@ abstract class NS_Carousel_Field {
         $this->name = $field_name;
         $this->meta_key = 'ns-carousel-options--'. $field_name;
         $this->input_name = 'ns-carousel-'. $field_name;
+        $this->required = false;
         //  Loop through field_config and set field variables
         foreach( $field_config as $key => $value ){
             $this->$key = $value;
