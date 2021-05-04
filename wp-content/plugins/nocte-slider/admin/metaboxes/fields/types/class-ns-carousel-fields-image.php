@@ -66,8 +66,8 @@ class NS_Carousel_Field_Image extends NS_Carousel_Field {
             <div class="field-wrapper <?php echo esc_attr( $this->type ); ?>-field-wrapper">
                 <label>
                     <p><?php echo $field_label; ?><?php echo $field_desc; ?></p>
-                    <a href="#" class="ns-upl" ns-media-title="<?php _e('Use Image', 'ns'); ?>" ns-media-btn-text="<?php _e('Use this image', 'ns'); ?>"><img data-placeholder="<?php echo esc_url( $default_img ); ?>" src="<?php echo esc_url( $image ); ?>" /></a>
-                    <a href="#" class="ns-rmv"><?php _e('Remove image', 'ns'); ?></a>
+                    <a href="#" class="ns-upl" style="display:inline-block;" ns-media-title="<?php _e('Use Image', 'ns'); ?>" ns-media-btn-text="<?php _e('Use this image', 'ns'); ?>" title="<?php _e('Add Image', 'ns'); ?>"><img data-placeholder="<?php echo esc_url( $add_img ); ?>" src="<?php echo esc_url( $image ); ?>" width="200" /></a>
+                    <a href="#" class="ns-rmv button" title="<?php _e('Remove image', 'ns'); ?>"><?php _e('Remove image', 'ns'); ?></a>
                     <input <?php echo $this->input_attrs(); ?>>
                     <?php echo $field_errors; ?>
                 </label>
