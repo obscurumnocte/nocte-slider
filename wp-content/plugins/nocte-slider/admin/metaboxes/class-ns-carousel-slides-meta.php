@@ -21,7 +21,7 @@ class NS_Carousel_Slides_Meta {
 	 */
 	public function __construct(){
         add_action('add_meta_boxes', array( $this, 'ns_carousel_slides_metabox') );
-        add_action('save_post', array( $this, 'ns_carousel_slides_save_custom_meta') );
+        add_action('save_post', array( $this, 'ns_carousel_slides_save_custom_meta'), 10, 3 );
 
 		//  Set up fields for processing
 		$this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->get_fields_config(), false );
@@ -63,7 +63,7 @@ class NS_Carousel_Slides_Meta {
     /**
      *  Save the custom field data
      */
-    public function ns_carousel_tiles_save_custom_meta( $post_id, $post, $update ){
+    public function ns_carousel_slides_save_custom_meta( $post_id, $post, $update ){
 		// Verify the nonce before proceeding.
         if( !isset( $_POST['slides_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['slides_meta_box_nonce'], basename( __FILE__ ) ) ){
 			return;
