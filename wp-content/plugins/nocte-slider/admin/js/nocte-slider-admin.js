@@ -106,8 +106,8 @@
 		}).on('select', function(){ // it also has "open" and "close" events
 			var attachment = custom_uploader.state().get('selection').first().toJSON();
 			$button.find('img').attr('src', attachment.url );
-			$button.next().val( attachment.id )
-				   .next().show();
+			$button.siblings('input').val( attachment.id )
+				   .siblings('.ns-rmv').show();
 		}).open();
 
 	});
@@ -116,10 +116,11 @@
 	$(document).on('click', '.ns-rmv', function(e){
 		e.preventDefault();
 
-		var $button = $(this);
-		$button.next().val(''); // emptying the hidden field
-		$button.hide()
-			   .prev().attr('src', $button.attr('data-placeholder') );
+		var $button = $(this),
+			$upl_btn_img = $button.siblings('.ns-upl').children('img');
+		$button.siblings('input').val(''); // emptying the hidden field
+		$button.hide();
+		$upl_btn_img.attr('src', $upl_btn_img.attr('data-placeholder') );
 	});
 
 })( jQuery );
