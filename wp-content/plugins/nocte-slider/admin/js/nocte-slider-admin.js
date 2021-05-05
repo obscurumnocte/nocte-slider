@@ -1,6 +1,20 @@
 ;(function($){
 	'use strict';
 
+	function replace_array_name_number( num, $el ){
+		var input_name = $el.attr('name');
+		if( input_name.length == 0 ) return '';
+
+		var pos_open_bracket = input_name.indexOf('[');
+		var pos_close_bracket = input_name.indexOf(']');
+		if( pos_open_bracket != -1 && pos_close_bracket != -1 ){
+			var input_name_start = input_name.substring( 0, pos_open_bracket +1 );
+			var input_name_end = input_name.substring( pos_close_bracket );
+			return input_name_start + num + input_name_end;
+		}
+		return input_name;
+	}
+
 	 //$( window ).load(function(){});
 	$(document).ready(function(){
 
@@ -8,9 +22,44 @@
 		var $repeater_values = $('.repeater-values-wrapper');
 		if( $repeater_values.length > 0 ){
 			$repeater_values.each(function(){
-				$(this).attr('data-count', $(this).children().length );
+				var $this = $(this);
+				//  Add the count of items
+				$this.attr('data-count', $this.children().length );
+
+				//  Repeater reordering
+				//  Set up sortable
+				$this.sortable({
+					axis		: 'y',
+					revert		: true,
+					containment	: 'parent',
+					cursor		: 'ns-resize',
+					items		: '> .repeater-wrapper',
+					handle		: '.move-btn',
+					update		: function( e, ui ){
+						var $el = $( e.target );
+						//console.log('update',$el);
+						//  Loop through items and renumber all inputs, textareas, selects
+						var $items = $el.children('.repeater-wrapper');
+						if( $items.length > 0 ){
+							$items.each(function( index, element ){
+								//  Find all fields
+								var $fields = $(this).find('input, textarea, select');
+								$fields.each(function(){
+									var $this = $(this);
+									var input_name = replace_array_name_number( index, $this );
+									if( input_name.length > 0 ){
+										$this.attr('name', input_name );
+									}
+								});
+							});
+						}
+					}
+				});
+				//  When adding new use $('.repeater-values-wrapper').sortable('refresh');
 			});
 		}
+
+
 
 		// Field Repeater functions
 		//  Generic add item button
@@ -25,16 +74,15 @@
 				// Need to update field names for repeater
 				$new_item.find('input,textarea,select').each(function(){
 					var $this = $(this);
-					var input_name = $this.attr('name');
-					var pos_bracket = input_name.indexOf('[');
-					if( pos_bracket != -1 ){
-						var input_name_start = input_name.substring( 0, pos_bracket +1 );
-						var input_name_end = input_name.substring( pos_bracket +1 );
-						$this.attr('name', input_name_start + current_count + input_name_end );
+					var input_name = replace_array_name_number( current_count, $this );
+					if( input_name.length > 0 ){
+						$this.attr('name', input_name );
 					}
 				});
 				$repeater_values_wrap.append( $new_item );
 				$repeater_values_wrap.attr('data-count', parseInt( current_count ) +1 );
+				//  Refresh sortable to enable new items
+				$repeater_values_wrap.sortable('refresh');
 			});
 		}
 
@@ -83,7 +131,8 @@
 				$item.addClass('closed');
 			}
 		});
-	});
+
+	}); // END document ready
 
 
 	//  Image upload field buttons

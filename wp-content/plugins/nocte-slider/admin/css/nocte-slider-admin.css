@@ -62,7 +62,7 @@
     flex: auto 1 0;
 }
 .field-wrapper.repeater-field-wrapper .controls-wrapper {
-    flex: 60px 0 1;
+    flex: 75px 0 1;
     padding-left: 30px;
 }
 .field-wrapper.repeater-field-wrapper .collapse-controls {
@@ -78,17 +78,27 @@
     appearance: none;
     border: none;
     background: transparent;
+    cursor: pointer;
 }
 .field-wrapper.repeater-field-wrapper .controls-wrapper button:focus {
     outline: none;
 }
-.field-wrapper.repeater-field-wrapper .controls-wrapper .accordion-chevron {
+.field-wrapper.repeater-field-wrapper .controls-wrapper .move-btn {
+    display: inline-block;
+    padding: 1px 6px;
+    cursor: ns-resize;
+}
+.field-wrapper.repeater-field-wrapper .controls-wrapper .accordion-chevron,
+.field-wrapper.repeater-field-wrapper .controls-wrapper .repeater-move {
     width: 25px;
     height: 25px;
     transition: transform ease-in-out 0.4s;
 }
 .field-wrapper.repeater-field-wrapper .repeater-wrapper.closed .controls-wrapper .accordion-chevron {
     transform: rotate(180deg);
+}
+.field-wrapper.repeater-field-wrapper .controls-wrapper .repeater-move {
+    width: 15px;
 }
 .field-wrapper.repeater-field-wrapper .controls-wrapper .repeater-trash {
     width: 20px;
