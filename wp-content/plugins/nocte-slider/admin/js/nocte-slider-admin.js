@@ -34,7 +34,7 @@
 					}
 				});
 				$repeater_values_wrap.append( $new_item );
-				$repeater_values_wrap.attr('data-count', current_count +1 );
+				$repeater_values_wrap.attr('data-count', parseInt( current_count ) +1 );
 			});
 		}
 
