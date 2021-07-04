@@ -229,6 +229,45 @@ abstract class NS_Carousel_Field {
     }
 
     /**
+     *  Get value
+     */
+    public function get_value(){
+        switch( $this->type ){
+            case 'text':
+            case 'number':
+                //  Check value is numeric
+                if( !is_numeric( $this->value ) ){
+                    //  If not set value
+                    $value = $this->value;
+                    break;
+                }
+                //  If numeric, check and convert
+                if( $this->value % 1 > 0 ){
+                    $value = floatval( $this->value );
+
+                } else {
+                    $value = intval( $this->value );
+                }
+                break;
+            case 'checkbox':
+                $value = $this->value == '1' ? true : false;
+                break;
+            default:
+                $value = $this->value;
+                break;
+        }
+        //  Return the formatted value
+        return $value;
+    }
+
+    /**
+     *  Get name
+     */
+    public function get_name(){
+        return $this->name;
+    }
+
+    /**
      *  Save submited value
      */
     public function save_value( $post_id ){
