@@ -56,11 +56,10 @@ abstract class NS_Carousel_Field {
     /**
      *  Set up post ID
      */
-    public function setup_post_id(){
-        global $post;
-        //  Set up post_id
-        if( !empty( $post->ID ) ){
-            $this->post_id = $post->ID;
+    public function setup_post_id( $carousel_id ){
+        //  Check for specified carousel_id
+        if( $carousel_id != 0 ){
+            $this->post_id = $carousel_id;
         }
     }
 
