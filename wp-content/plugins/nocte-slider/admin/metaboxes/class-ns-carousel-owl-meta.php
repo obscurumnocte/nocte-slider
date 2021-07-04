@@ -144,7 +144,7 @@ class NS_Carousel_Owl_Options_Meta {
 									'default'	=> 1,
 									'label'		=> __('Start Position', 'ns'),
 									'desc'		=> __('Position of item to start with (0 is first item)', 'ns'),
-									'min'		=> 1
+									'min'		=> 0
 								),
 								'nav'		=> array(
 									'type'		=> 'checkbox',
@@ -166,19 +166,10 @@ class NS_Carousel_Owl_Options_Meta {
 								),
 								'slideBy'		=> array(
 									'type'		=> 'text',
-									'default'	=> 1,
+									'default'	=> 'page',
 									'label'		=> __('Slide By', 'ns'),
-									'desc'		=> __('Number of items to slide by when navigating. \'page\' can be set to slide all visible items to reveal the next set.', 'ns')
-								),
-								'slideTransition'		=> array(
-									'type'		=> 'select',
-									'default'	=> '',
-									'label'		=> __('Slide Transition', 'ns'),
-									'desc'		=> __('Select the transition used when navigating.', 'ns'),
-									'options'	=> array(
-										''			=> __('Linear', 'ns')
-									)
-								),
+									'desc'		=> __('Number of items to slide by when navigating. \'page\' can be set to slide all visible items to reveal the next set. NOTE: if there are not enough items, the navigation willnot slide e.g. displaying 3 of 5 items will refuse to slide by 3 as there are only 2 items remaining.', 'ns')
+								)
 							)
 						),
 						'items'		=> array(
@@ -246,22 +237,22 @@ class NS_Carousel_Owl_Options_Meta {
 						),
 						'navText'		=> array(
 							'type'		=> 'subfields',
-							'default'	=> array('next', 'prev'),
+							'default'	=> array('<span aria-label="Previous">&#x2039;</span>', '<span aria-label="Next">&#x203a;</span>'),
 							'label'		=> __('Navigation Text', 'ns'),
 							'desc'		=> __('Specify the labels for the next and previous arrows.', 'ns'),
 							'subfields'	=> array(
-								'next'	=> array(
-									'type'		=> 'text',
-									'default'	=> __('next', 'ns'),
-									'label'		=> __('Next', 'ns'),
-									'desc'		=> ''
-								),
 								'prev'	=> array(
 									'type'		=> 'text',
-									'default'	=> __('prev', 'ns'),
+									'default'	=> __('<span aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></span>', 'ns'),
 									'label'		=> __('Previous', 'ns'),
 									'desc'		=> ''
-								)
+								),
+									'next'	=> array(
+										'type'		=> 'text',
+										'default'	=> __('<span aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg></span>', 'ns'),
+										'label'		=> __('Next', 'ns'),
+										'desc'		=> ''
+									)
 							)
 						),
 						'slideBy'		=> array(
@@ -336,6 +327,13 @@ class NS_Carousel_Owl_Options_Meta {
 							'desc'		=> __('Set the width for videos. Set to 0 to use default.', 'ns'),
 							'min'		=> 0
 						),
+						'rtl'		=> array(
+							'type'		=> 'checkbox',
+							'default'	=> 0,
+							'label'		=> __('Right to Left (rtl)', 'ns'),
+							'desc'		=> __('Set if the slider should work from right to left.', 'ns'),
+							'min'		=> 0
+						),
 					)
 				),
 				'group-advanced'	=> array(
@@ -357,10 +355,10 @@ class NS_Carousel_Owl_Options_Meta {
 						),
 						'dotsEach'		=> array(
 							'type'		=> 'number',
-							'default'	=> 1,
+							'default'	=> 0,
 							'label'		=> __('Items per Dot', 'ns'),
-							'desc'		=> __('The number of items a dot should represent.', 'ns'),
-							'min'		=> 1
+							'desc'		=> __('The number of items a dot should represent (Set to 0 to use default).', 'ns'),
+							'min'		=> 0
 						),
 						'slideTransition'		=> array(
 							'type'		=> 'select',
@@ -417,7 +415,7 @@ class NS_Carousel_Owl_Options_Meta {
 						),
 						'navElement'		=> array(
 							'type'		=> 'text',
-							'default'	=> 'div',
+							'default'	=> 'button type="button" role="presentation"',
 							'label'		=> __('Navigation Element', 'ns'),
 							'desc'		=> __('The DOM element type for a single directional navigation link i.e. div', 'ns')
 						),
