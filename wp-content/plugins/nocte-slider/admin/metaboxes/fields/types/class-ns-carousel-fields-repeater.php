@@ -219,4 +219,30 @@ class NS_Carousel_Field_Repeater extends NS_Carousel_Field {
         }
     }
 
+    /**
+     *  Get value
+     */
+    public function get_value(){
+        $formatted_data = $this->value;
+        if( !empty( $this->value ) && is_array( $this->value ) ):
+            $formatted_data = array();
+            foreach( $this->value as $values_key => $repeater_values ):
+                //  Loop through subfields and get correctly formatted values
+                foreach( $this->metabox_fields->fields as $a_field ):
+                    //  Set up field value
+                    $a_field->clear_value();
+                    if( array_key_exists( $a_field->name, $repeater_values ) ){
+                        $a_field->set_value( $repeater_values[ $a_field->name ] );
+                        if( !isset( $formatted_data[ $values_key ] ) ){
+                            $formatted_data[ $values_key ] = array();
+                        }
+                        $formatted_data[ $values_key ][ $a_field->name ] = $a_field->get_value();
+                    }
+                endforeach;
+            endforeach;
+        endif;
+
+        return $formatted_data;
+    }
+
 }
