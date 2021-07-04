@@ -1,0 +1,28 @@
+.site-content .owl-theme .owl-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+}
+.site-content .owl-theme .owl-nav button.owl-prev {
+    left: 0;
+}
+.site-content .owl-theme .owl-nav button.owl-next {
+    right: 0;
+}
+.site-content .owl-theme .owl-nav [class*=owl-]:hover {
+    background: transparent;
+}
+
+.site-content .owl-theme .owl-dots {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/**  Default TwentyTwentyOne theme fix  **/
+.site-content .owl-theme button:not(:hover):not(:active):not(.has-background) {
+    background-color: transparent;
+}
