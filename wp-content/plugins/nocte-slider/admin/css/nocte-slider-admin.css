@@ -41,7 +41,7 @@
 .field-wrapper.repeater-field-wrapper .repeater-wrapper*/ {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     position: relative;
     padding: 10px 15px;
     border: 1px solid #ccc;
@@ -59,7 +59,7 @@
     content: ")";
 }
 .field-wrapper.repeater-field-wrapper .collapsable-content {
-    flex: auto 1 0;
+    flex: auto 1 1;
 }
 .field-wrapper.repeater-field-wrapper .controls-wrapper {
     flex: 75px 0 1;
