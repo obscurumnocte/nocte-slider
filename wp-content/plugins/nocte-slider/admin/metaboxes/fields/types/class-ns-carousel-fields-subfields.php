@@ -16,14 +16,13 @@ class NS_Carousel_Field_Subfields extends NS_Carousel_Field {
     public function __construct( $field_name, $field_config ){
         parent::__construct( $field_name, $field_config );
 
-
         //  Check for subfields, is exist, set up fields
         if( !empty( $this->subfields ) ){
             //  Get instance of metabox fields to add subfields
             $this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->subfields, false );
             //print'<pre>metabox_fields = '.print_r($this->metabox_fields->fields,true).'</pre>';
             foreach( $this->metabox_fields->fields as $a_field ){
-                $a_field->input_name = 'ns-carousel-'. $this->name .'[]['. $a_field->name .']';
+                $a_field->input_name = 'ns-carousel-'. $this->name .'['. $a_field->name .']';
             }
         }
     }
