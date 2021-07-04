@@ -17,7 +17,12 @@ class Nocte_Slider_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct(){}
+	public function __construct(){
+		/**
+		 * The classes for field set up
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) .'public/class-nocte-slider-shortcode.php';
+	}
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
