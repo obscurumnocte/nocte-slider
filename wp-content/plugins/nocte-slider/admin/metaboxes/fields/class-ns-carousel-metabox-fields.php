@@ -144,6 +144,19 @@ class NS_Carousel_Metabox_Fields {
     <?php
     }
 
+    /**
+     *  Get a simple data structure of field names to values
+     */
+    public function get_fields_data(){
+        //  Set up data structure
+        $field_data = array();
+        //  Loop through fields and get data
+        foreach( $this->fields as $meta_field ){
+            $field_data[ $meta_field->get_name() ] = $meta_field->get_value();
+        }
+        return $field_data;
+    }
+
 
 	/**
 	 * Utility function to check for valid json

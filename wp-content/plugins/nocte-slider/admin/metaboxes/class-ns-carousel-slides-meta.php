@@ -25,6 +25,8 @@ class NS_Carousel_Slides_Meta {
 
 		//  Set up fields for processing
 		$this->metabox_fields = new NS_Carousel_Metabox_Fields( $this->get_fields_config(), false );
+
+		add_filter('get_slides_meta', array( $this, 'get_slides_meta') );
 	}
 
     /**
@@ -34,7 +36,7 @@ class NS_Carousel_Slides_Meta {
         global $post;
         if( empty( $post ) ) return;
 
-		do_action('ns-carousel-load-meta-data', $post );
+		do_action('ns-carousel-load-meta-data', $post->ID );
 
     	add_meta_box('ns-carousel-slides',
     		__('Tiles', 'ns'),
@@ -85,6 +87,19 @@ class NS_Carousel_Slides_Meta {
 		//  Save fields
 		$this->metabox_fields->save_fields( $post_id );
     }
+
+	/**
+	 *  Return the slide meta data
+	 */
+	public function get_slides_meta( $carousel_id = 0 ){
+		if( $carousel_id == 0 ){
+			return array();
+		}
+		//  Set up field data for current carousel
+		do_action('ns-carousel-load-meta-data', $carousel_id );
+		//  Return array of field names to values
+		return $this->metabox_fields->get_fields_data();
+	}
 
 	/**
 	 * Set up the fields array
