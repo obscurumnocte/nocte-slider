@@ -13,6 +13,12 @@
 class Nocte_Slider_Admin {
 
 	/**
+	 * Set up property for posttype name
+	 */
+	protected $posttype_name = 'ns_carousel';
+
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -113,7 +119,7 @@ class Nocte_Slider_Admin {
     		'can_export'			=> true,
 			'delete_with_user'      => true
     	);
-    	register_post_type('ns_carousel', $custom_pt_args );
+    	register_post_type( $this->posttype_name, $custom_pt_args );
     }
 
 
@@ -142,5 +148,14 @@ class Nocte_Slider_Admin {
 
         return $messages;
     }
+
+
+
+	/**
+	 * Getter function for posttype_name
+	 */
+	public function get_posttype_name(){
+		return $this->posttype_name;
+	}
 
 }
