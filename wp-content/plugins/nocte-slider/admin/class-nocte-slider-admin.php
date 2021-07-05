@@ -150,6 +150,39 @@ class Nocte_Slider_Admin {
     }
 
 
+	/**
+	*  Add custom column to listing page
+	*/
+	public function ns_carousel_additional_columns( $columns ){
+		$new = array(
+			'cb'					=> '',
+			'title'					=> _x('Title', 'column name', 'ns')
+		);
+		$new['ns_shortcode'] = _x('Shortcode', 'column name', 'ns');
+		$new_columns = array_merge( $new, $columns );
+		return $new_columns;
+	}
+
+
+	/**
+	*  Add content to additional columns
+	*/
+	public function ns_carousel_custom_columns_content( $column, $post_id ){
+		global $post;
+		if( empty( $post_id ) )
+			$post_id = $post->ID;
+
+		if( !is_admin() || $post->post_type != $this->posttype_name ){
+			return;
+		}
+
+		//  Check columns for custom shortcode column
+		if( 'ns_shortcode' == $column ){
+			echo '[nocte_slider_carousel nsc_id="'. $post_id .'"/]';
+		}
+	}
+
+
 
 	/**
 	 * Getter function for posttype_name

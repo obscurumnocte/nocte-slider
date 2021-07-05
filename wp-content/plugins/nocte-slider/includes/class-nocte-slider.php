@@ -82,6 +82,9 @@ class Nocte_Slider {
 		//  Add carousel post type
 		add_action('init', array( $plugin_admin, 'ns_carousel_post_type_setup'), 11 );
         add_filter('post_updated_messages', array( $plugin_admin, 'ns_carousel_updated_messages') );
+		//  Add carousel listing shortcode column
+		add_filter('manage_'. $plugin_admin->get_posttype_name() .'_posts_columns', array( $plugin_admin, 'ns_carousel_additional_columns'), 11 );
+        add_action('manage_posts_custom_column', array( $plugin_admin, 'ns_carousel_custom_columns_content'), 10, 2 );
 	}
 
 	/**
