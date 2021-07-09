@@ -60,7 +60,7 @@ class Nocte_Slider_Shortcode {
         //  Start output buffering as result needs to be returned
         ob_start();
     ?>
-    <?php //  Add full width column for vid listing ?>
+    <?php //  Add markup for carousel ?>
     <div<?php echo $id; ?> class="ns-carousel-wrapper-<?php echo $carousel_id . $classes; ?>">
         <div class="owl-carousel owl-theme">
         <?php
